@@ -1,0 +1,158 @@
+div#container
+{
+    width: 90%;
+    position: relative;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+body
+{
+    text-align: center;
+    margin: 0;
+    background-color: #EEEEEE;
+    background: url(../imagenes/background.png) repeat top center;
+    color: #222222;
+}
+p, span, div, ol, ul, li, td, button, input, textarea, form
+{
+    margin: 0;
+    padding: 0;
+}
+a
+{
+    color: #0000FF;
+    outline: none;
+    text-decoration: underline;
+}
+a:visited
+{
+    color: #800080;
+}
+a:active
+{
+    color: #0000FF;
+}
+a:hover
+{
+    text-decoration: underline;
+}
+a.menu:link
+{
+    color: #AAAAAA;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.menu:visited
+{
+    color: #AAAAAA;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.menu:active
+{
+    color: #AAAAAA;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.menu:hover
+{
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+#wb_Text2 
+{
+    background-color: transparent;
+    border: 0px #000000 solid;
+    padding: 0;
+}
+#wb_Text2 div
+{
+    text-align: left;
+}
+#wb_Text3 
+{
+    background-color: transparent;
+    border: 0px #000000 solid;
+    padding: 0;
+}
+#wb_Text3 div
+{
+    text-align: left;
+}
+#wb_Text8 
+{
+    background-color: transparent;
+    border: 0px #000000 solid;
+    padding: 0;
+}
+#wb_Text8 div
+{
+    text-align: left;
+}
+#Image2
+{
+    border: 0px #000000 solid;
+}
+#Line1
+{
+    color: #AAAAAA;
+    background-color: #AAAAAA;
+    border-width: 0px;
+}
+#wb_TextMenu1
+{
+    color :#282828;
+    font-family: Georgia;
+    font-weight: bold;
+    font-size: 16px;
+}
+#wb_TextMenu1 span
+{
+    margin: 0px 0px 0px 16px;
+}
+/*................................................................................*/
+/*................................................................................*/
+#formTB input[type='text']{
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #999999 ;
+    height: 25px;
+    color: #252323 ;
+}
+#formTB select{
+    border-radius: 3px;
+    border: 1px solid #999999 ;
+    height: 28px;
+}
+#formTB .lbl{
+    font-weight: bold;
+    color: #3d3e3d ;
+    text-align: right;
+    padding-right: 20px;
+    padding-bottom: 7px;
+    font-size: 14px;
+}
+#formTB tr{
+    height: 32px;
+}
+#formData th{
+    height: 30px;
+    text-align: left;
+    border-bottom: 1px solid #666666
+}
+#formData tr{
+    height: 25px;
+    font-size: 12px;
+    border-bottom: 1px solid #666666
+}
+.a-lnk-op:hover{
+    color: #009933;
+    cursor: pointer;
+}
+.a-lnk-v:hover{
+    color: #669900;
+    cursor: pointer;
+}

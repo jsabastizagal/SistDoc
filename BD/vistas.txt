@@ -1,0 +1,178 @@
+create view v_reporte as
+select
+r.id_reporte,
+r.fecha_reporte,
+r.id_usuario,
+r.id_expediente,
+tr.nombre_reporte,
+u.dni,
+u.nombre,
+u.apellido_paterno,
+e.id_procedimiento,
+e.numero_expediente,
+e.asunto,
+e.fecha,
+e.folio,
+e.id_cliente,
+e.estado_expediente,
+e.id_tipo_documento
+from tb_reporte r
+join tb_tipo_reporte tr on tr.id_tipo_reporte=r.id_tipo_reporte
+join tb_usuario u on u.id_usuario=r.id_usuario
+join tb_expediente e on e.id_expediente=r.id_expediente;
+
+create view v_tipo_reporte as
+select
+tr.id_tipo_reporte,
+tr.nombre_reporte
+from tb_tipo_reporte tr;
+
+create view v_usuario as
+select
+u.id_usuario,
+u.dni,
+u.nombre,
+u.apellido_paterno
+from tb_usuario u;
+
+create view v_nivel_acceso as
+select
+n.id_nivel_acceso,
+n.nivel
+from tb_nivel_acceso n;
+
+create view v_cuenta_usuario as
+select
+c.id_cuenta_usuario,
+c.usuario,
+c.clave
+from tb_cuenta_usuario c;
+
+create view v_organo_administrativo as
+select
+o.id_organo_administrativo,
+o.nombre_area
+from tb_organo_administrativo o;
+
+create view v_rol_usuario as
+select
+r.id_rol_usuario,
+r.nombre_rol,
+r.estado,
+r.id_organo_administrativo,
+r.id_cuenta_usuario,
+r.id_usuario,
+r.id_nivel_acceso,
+o.nombre_area,
+c.usuario,
+c.clave,
+u.dni,
+u.nombre,
+u.apellido_paterno,
+n.nivel as nivel_acceso
+from tb_rol_usuario r
+join tb_organo_administrativo o on o.id_organo_administrativo=r.id_organo_administrativo
+join tb_cuenta_usuario c on c.id_cuenta_usuario=r.id_cuenta_usuario
+join tb_usuario u on u.id_usuario=r.id_usuario
+join tb_nivel_acceso n on n.id_nivel_acceso=r.id_nivel_acceso;
+
+
+create view v_estado as
+select
+e.id_estado,
+e.nombre
+from tb_estado e;
+
+
+create view v_observacion as
+select
+o.id_observacion,
+o.observacion,
+o.id_movimiento,
+m.id_expediente,
+m.id_organo_administrativo,
+m.org_destino,
+m.fecha_recepcion,
+m.rol_recepcion,
+m.fecha_derivacion,
+m.rol_derivacion,
+m.fecha_atencion,
+m.rol_atencion,
+m.id_estado
+from tb_observacion o
+join tb_movimiento m on m.id_movimiento=o.id_movimiento;
+
+
+create view v_tipo_documento as
+select
+t.id_tipo_documento,
+t.nombre_tipo_documento
+from tb_tipo_documento t;
+
+create view v_cliente as
+select
+c.id_cliente,
+c.nombre,
+c.numero_identificacion
+from tb_cliente c;
+
+
+create view v_procedimiento as
+select
+p.id_procedimiento,
+p.nombre_procedimiento
+from tb_procedimiento p;
+
+
+create view v_archivo as
+select
+a.id_archivo,
+a.nombre_archivo,
+a.id_expediente,
+e.id_procedimiento,
+e.numero_expediente,
+e.numero_documento,
+e.asunto,
+e.fecha,
+e.folio,
+e.id_cliente,
+e.estado_expediente,
+e.id_tipo_documento
+from tb_archivo a
+join tb_expediente e on e.id_expediente=a.id_expediente;
+
+
+create view v_expediente as
+select
+e.id_expediente,
+e.id_procedimiento,
+e.numero_expediente,
+e.numero_documento,
+e.asunto,
+e.fecha,
+e.folio,
+e.id_cliente,
+e.estado_expediente,
+e.id_tipo_documento,
+e.observacion,
+p.nombre_procedimiento,
+c.nombre,
+c.numero_identificacion,
+t.nombre_tipo_documento
+from tb_expediente e
+join tb_procedimiento p on p.id_procedimiento=e.id_procedimiento
+join tb_cliente c on c.id_cliente=e.id_cliente
+join tb_tipo_documento t on t.id_tipo_documento=e.id_tipo_documento;
+
+
+create view v_movimiento as
+select
+m.id_movimiento,m.id_expediente,oa.id_organo_administrativo as id_area_origen,oa.nombre_area as area_origen,oad.id_organo_administrativo as id_area_destino,oad.nombre_area as area_destino,m.fecha_recepcion,rur.id_rol_usuario as usuario_recepcion,rur.nombre_rol as rol_recepcion,m.fecha_derivacion,rud.id_rol_usuario as usuario_derivacion,rud.nombre_rol as rol_derivacion,m.fecha_atencion,rua.id_rol_usuario as usuario_atencion,rua.nombre_rol as rol_atencion,m.id_estado,e.nombre,m.historial,m.proveido
+from tb_movimiento m
+join tb_organo_administrativo oa on oa.id_organo_administrativo=m.id_organo_administrativo
+join tb_organo_administrativo oad on oad.id_organo_administrativo=m.org_destino
+join tb_rol_usuario rur on rur.id_rol_usuario=m.rol_recepcion
+join tb_rol_usuario rud on rud.id_rol_usuario=m.rol_derivacion
+join tb_rol_usuario rua on rua.id_rol_usuario=m.rol_atencion
+join tb_estado e on e.id_estado=m.id_estado
+order by m.id_movimiento asc
